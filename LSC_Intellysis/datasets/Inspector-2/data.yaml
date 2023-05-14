@@ -1,0 +1,13 @@
+names:
+- Component
+- Solder
+nc: 2
+roboflow:
+  license: CC BY 4.0
+  project: inspector-kzz3n
+  url: https://universe.roboflow.com/intellysis/inspector-kzz3n/dataset/2
+  version: 2
+  workspace: intellysis
+test: ../test/images
+train: Inspector-2/train/images
+val: Inspector-2/valid/images
