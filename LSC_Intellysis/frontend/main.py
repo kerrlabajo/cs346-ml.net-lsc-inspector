@@ -1,7 +1,14 @@
 import streamlit as st
+import os
 import torch
 from torchvision import transforms
 from PIL import Image
+
+css_path = os.path.join(os.path.dirname(__file__), "styles.css")
+absolute_css_path = os.path.abspath(css_path)
+
+st.markdown(f"<style>{open(absolute_css_path).read()}</style>", unsafe_allow_html=True)
+
 
 st.title("LSC Quality Evaluator")
 
@@ -10,6 +17,9 @@ def main():
     # Create sidebar
 
     # Add items to the sidebar
+    history_button = st.sidebar.button(
+        "Dashboard", key="Dashboard", use_container_width=True
+    )
     home_button = st.sidebar.button("Home", key="Home", use_container_width=True)
     history_button = st.sidebar.button(
         "History", key="History", use_container_width=True
