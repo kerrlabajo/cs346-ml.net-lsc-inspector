@@ -1,0 +1,10 @@
+
+train: train/images/train/
+val: train/images/val/
+test:  # test images (optional)
+
+# Classes
+names:
+  0: Good
+  1: No Good
+

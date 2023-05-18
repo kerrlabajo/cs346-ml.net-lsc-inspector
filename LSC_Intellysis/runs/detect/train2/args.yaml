@@ -1,8 +1,8 @@
 task: detect
 mode: train
 model: yolov8s.yaml
-data: datasets/Inspector-2/data.yaml
-epochs: 25
+data: /datasets/Inspector-1/data.yaml
+epochs: 50
 patience: 50
 batch: 16
 imgsz: 800

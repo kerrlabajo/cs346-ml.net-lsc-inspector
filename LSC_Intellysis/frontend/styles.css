@@ -1,30 +1,72 @@
 .main,
-.css-1avcm0n {
-    background-color: #DFDFDF;
+.css-1avcm0n,
+.css-1i2wz1k {
+  background-color: #DFDFDF;
 }
 
-.e16nr0p30, 
+.e16nr0p30,
 .css-q8sbsg,
-.uploadedFileName  {
-    color: black;
+.e1fb0mya1,
+.css-7oyrr6,
+.e1fb0mya1,
+.css-1avcm0n,
+.e1fb0mya1,
+.css-9ycgxx,
+.uploadedFileName {
+  color: black;
 }
 
 .css-6qob1r,
+.css-e370rw,
 .css-erpbzb {
-    background-color: #48BF91;
-    /* padding: 20px;
+  background-color: #48BF91;
+  /* padding: 20px;
     border-radius: 10px; */
 }
 
 .css-1a359ur,
 .css-b3z5c9 {
-    background-color: #0076BE;
+  background-color: #48BF91;
+}
+
+.css-1a359ur {
+  border: 0 none;
+  /* border-bottom: 1px solid #0076BE; */
+  border-radius: 0;
+  color: #DFDFDF;
+  justify-content: start;
+  padding-left: 30px;
+}
+
+.css-1a359ur:hover {
+  background-color: #0076BE;
+  border-color: #0076BE;
+  color: #FFFFFF;
+}
+
+.css-x78sv8 p {
+  font-size: 20px;
 }
 
 .css-z8f339 {
-    background-color: #48BF91;
+  background-color: #DFDFDF;
+  border: 3px #48BF91 solid;
+  border-radius: 10px;
 }
 
-.e1fb0mya1 {
-    color: white;
+.css-b3z5c9:hover,
+.css-b3z5c9:active {
+  border-color: #DFDFDF;
+  color: #DFDFDF;
 }
+
+.css-b3z5c9:active {
+  background-color: #0076BE;
+  border-color: #DFDFDF;
+  color: #DFDFDF;
+}
+
+/* 
+.e1tzin5v2 {
+    width: 500px
+} */

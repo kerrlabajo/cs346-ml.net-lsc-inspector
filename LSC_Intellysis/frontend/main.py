@@ -1,17 +1,32 @@
 import streamlit as st
 import os
-import torch
-from torchvision import transforms
 from PIL import Image
+from ultralytics import YOLO
+from ultralytics.yolo.v8.detect.predict import DetectionPredictor
+import cv2
+import torch
 
 css_path = os.path.join(os.path.dirname(__file__), "styles.css")
 absolute_css_path = os.path.abspath(css_path)
 
 st.markdown(f"<style>{open(absolute_css_path).read()}</style>", unsafe_allow_html=True)
 
-
 st.title("LSC Quality Evaluator")
 
+# print(torch.cuda.is_available())
+# print(torch.cuda.get_device_name(0))
+
+# image_path = "../test/Test1.png"
+# img = Image.open(image_path)
+
+model = YOLO("../runs/detect/train7/weights/best.pt")
+result = model.predict(source="0", show=False, conf=0.5)
+# print(img)
+# # Get the original image
+# res_path = "runs/detect/predict/Test1.png"
+# res = Image.open(res_path)
+
+# st.image(res)
 
 def main():
     # Create sidebar
@@ -36,7 +51,6 @@ def main():
 
     # Render sidebar items
     if home_button:
-        # Update the URL with the "page" parameter set to "home"
         query_params["page"] = "home"
         st.experimental_set_query_params(**query_params)
         render_home()
@@ -58,12 +72,24 @@ def main():
 
 # Image upload button
 uploaded_file = st.file_uploader("Upload an image")
-
+print(uploaded_file)
 # Process the uploaded image if available
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.subheader("Uploaded Image")
-    st.image(image)
+    image_width = 500
+    aspect_ratio = image.width / image.height
+    image_height = int(image_width / aspect_ratio)
+    st.image(image, width=image_width)
+  
+
+    # result = model.predict(source=image, show=False, conf=0.5, save=True)
+
+    # # Get the original image
+    # res_path = "runs/detect/predict/Test1.png"
+    # res = Image.open(res_path)
+
+    # st.image(res)
 
 
 def render_home():
