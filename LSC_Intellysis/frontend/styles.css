@@ -77,7 +77,12 @@ p {
   background: #DFDFDF;
 }
 
-/* 
+/*
 .e1tzin5v2 {
     width: 500px
 } */
+
+/*==================================================*/
+container-xxl.d-flex.flex-column.flex-shrink-0.p-3 {
+  background-color: #48BF91;
+}

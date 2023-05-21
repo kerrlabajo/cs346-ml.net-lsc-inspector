@@ -3,6 +3,7 @@ import cv2
 import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
+from streamlit_option_menu import option_menu
 # from ultralytics.yolo.v8.detect.predict import DetectionPredictor
 
 from render_dashboard import render_dashboard
@@ -19,7 +20,7 @@ st.markdown(f"<style>{open(absolute_css_path).read()}</style>", unsafe_allow_htm
 st.title("LSC Quality Evaluator")
 
 model = YOLO("../runs/detect/train7/weights/best.pt")
-# model.predict(source="../test/Test3.png", show=False, conf=0.5, save=True) 
+# model.predict(source="../test/Test3.png", show=False, conf=0.5, save=True)
 
 
 # res_path = "runs/detect/predict6/Test3.png"
@@ -40,16 +41,16 @@ def main():
     "Settings": render_settings,
   }
 
-  query_params = st.experimental_get_query_params()
-  current_page = query_params.get("page", ["Home"])[0]
+  #query_params = st.experimental_get_query_params()
+  #current_page = query_params.get("page", ["Home"])[0]
 
-  for page_name, page_func in pages.items():
-    button = st.sidebar.button(page_name, key=page_name, use_container_width=True)
-    if button:
-      query_params["page"] = page_name
-      st.experimental_set_query_params(**query_params)
-      page_func()
-    
+  #for page_name, page_func in pages.items():
+   # button = st.sidebar.button(page_name, key=page_name, use_container_width=True)
+    #if button:
+     # query_params["page"] = page_name
+      #st.experimental_set_query_params(**query_params)
+     # page_func()
+
   # Image upload button
   uploaded_file = st.file_uploader("Upload an image", type=["mp4", "png", "jpg", "jpeg"])
 
@@ -58,13 +59,13 @@ def main():
     # Check the file extension
     file_extension = uploaded_file.name.split(".")[-1].lower()
     file_path = os.path.join("../test/", uploaded_file.name)
-    with open(file_path, 'wb') as out:  
+    with open(file_path, 'wb') as out:
         out.write(uploaded_file.read())
 
     if file_extension == "mp4":
       st.subheader("Uploaded Video")
       st.video(uploaded_file)
-    else: 
+    else:
       image = Image.open(uploaded_file)
       st.subheader("Uploaded Image")
       image_width = 500
@@ -74,7 +75,7 @@ def main():
     analyze_btn = st.button("Analyze")
 
     if analyze_btn:
-      st.session_state.ctr += 1 
+      st.session_state.ctr += 1
       print(st.session_state.ctr)
       analyze_image(file_path)
       string=uploaded_file.name
@@ -98,13 +99,36 @@ def main():
 
 
 def analyze_image(file):
-  return model.predict(source=file, show=False, conf=0.20, save=True) 
+  return model.predict(source=file, show=False, conf=0.20, save=True)
 
   # Save the image to a file
 def export_image(image):
   image.save(image, format='png')
   st.success("Image exported successfully!")
 
-
+with st.sidebar:
+            selected = option_menu(
+                menu_title=None,  # required
+                options=["Dashboard", "Home", "History", "Archived", "Settings"],  # required
+                icons=["clipboard", "house", "clock-history", "archive", "gear"],  # optional
+                menu_icon="cast",  # optional
+                default_index=1,  # optional
+                styles={
+        "container": {"background-color": "#48BF91", "border-radius": "0px"},
+        "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#DFDFDF"},
+        "nav-link-selected": {"background-color": "#0076BE"}
+    }
+            )
+if selected == "Dashboard":
+    render_dashboard()
+if selected == "Home":
+    render_home()
+    main()
+if selected == "History":
+    render_history()
+if selected == "Archived":
+    render_archived()
+if selected == "Settings":
+    render_settings()
 if __name__ == "__main__":
-  main()
+  selected = "Home"
