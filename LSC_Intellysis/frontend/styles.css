@@ -4,6 +4,12 @@
   background-color: #DFDFDF;
 }
 
+p {
+  /* color: black; */
+}
+
+
+.css-nahz7x,
 .e16nr0p30,
 .css-q8sbsg,
 .e1fb0mya1,
@@ -38,7 +44,8 @@
   padding-left: 30px;
 }
 
-.css-1a359ur:hover {
+.css-1a359ur:hover,
+.css-1a359ur:active {
   background-color: #0076BE;
   border-color: #0076BE;
   color: #FFFFFF;
@@ -64,6 +71,10 @@
   background-color: #0076BE;
   border-color: #DFDFDF;
   color: #DFDFDF;
+}
+
+.css-ffhzg2 {
+  background: #DFDFDF;
 }
 
 /* 

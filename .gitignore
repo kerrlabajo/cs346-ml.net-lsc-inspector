@@ -396,3 +396,15 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Files
+/LSC_Intellysis/test/*.png
+/LSC_Intellysis/test/*.jpeg
+/LSC_Intellysis/test/*.jpg
+/LSC_Intellysis/test/*.mp4
+
+
+/LSC_Intellysis/frontend/runs/detect/*.png
+/LSC_Intellysis/frontend/runs/detect/*.jpeg
+/LSC_Intellysis/frontend/runs/detect/*.jpg
+/LSC_Intellysis/frontend/runs/detect/*.mp4
