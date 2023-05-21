@@ -44,16 +44,25 @@ def main():
     "Archived": render_archived,
     "Settings": render_settings,
   }
-  
+   
   st.subheader("Detect laser soldering condition in real time.")
   rt_detection_btn = st.button("External Camera")
 
   if rt_detection_btn:
-    model.predict(source="http://192.168.1.2:4747/video", show=True, conf=0.25, save=True)
+    try:
+      FRAME_WINDOW = st.image([])
+      camera = cv2.VideoCapture("http://192.168.50.153:4747/video")
 
+      while True:
+          _, frame = camera.read()
+          frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+          FRAME_WINDOW.image(frame)
+    except Exception as e:
+        st.error(f"Error: {e}")
+        
   # Image upload button
   st.subheader("Upload a file")
-  uploaded_file = st.file_uploader("", type=["mp4", "png", "jpg", "jpeg"])
+  uploaded_file = st.file_uploader("null", type=["mp4", "png", "jpg", "jpeg"])
 
   # Process the uploaded image if available
   if uploaded_file is not None:
