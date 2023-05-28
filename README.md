@@ -1,1 +1,2 @@
-# cs346-ml.net-lsc-inspector
+# LSC Qualitative Inspector
+
