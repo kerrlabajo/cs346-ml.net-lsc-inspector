@@ -15,7 +15,7 @@ class ImageProcessingView:
     
     def display_result(self, result):
       name, extension, accuracy, error_rate, classification = result
-      res_path = 'runs/detect/predict'+str(st.session_state.ctr)+'/'+ name + extension
+      res_path = 'runs/detect/predict'+str(st.session_state.ctr)+'/'+ name +"."+ extension
 
       # Display analyzed video/image
       if extension == "mp4":

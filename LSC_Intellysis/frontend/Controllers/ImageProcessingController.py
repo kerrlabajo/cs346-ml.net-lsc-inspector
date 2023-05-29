@@ -1,5 +1,7 @@
 import os
 import streamlit as st
+import datetime
+import gridfs
 from PIL import Image
 from streamlit_option_menu import option_menu
 
@@ -79,7 +81,26 @@ class ImageProcessingController:
         self.analyze_uploaded_file(uploaded_file)
         self.view.display(self.model.getFile())
 
+
   def analyze_uploaded_file(self, file):
     st.session_state.ctr += 1
     self.model.analyze_image(self.file_path)
+
+    print("---------------------------------------------------------------------")
+    name, extension, accuracy, error_rate, classification = self.model.getFile()
+    print("---------------------------------------------------------------------")
+    print(name, extension)
+    with open(self.file_path, "rb") as file:
+      image_data = file.read()
+    data = {
+      "file_path": self.file_path,
+      "file_name": name,
+      "extension": extension,
+      "classification": classification,
+      "accuracy": accuracy,
+      "error_rate": error_rate,
+      "timestamp": datetime.datetime.now(),
+      "image_data": image_data
+    }
     
+    self.model.insertIntoDB(data)
