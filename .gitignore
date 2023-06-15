@@ -404,7 +404,4 @@ FodyWeavers.xsd
 /LSC_Intellysis/test/*.mp4
 
 
-/LSC_Intellysis/frontend/runs/detect/*.png
-/LSC_Intellysis/frontend/runs/detect/*.jpeg
-/LSC_Intellysis/frontend/runs/detect/*.jpg
-/LSC_Intellysis/frontend/runs/detect/*.mp4
+/LSC_Intellysis/frontend/runs/detect
