@@ -32,7 +32,7 @@ class ImageProcessingController:
     with st.sidebar:
       self.selected = option_menu(
         menu_title=None,
-        options=list(self.pages.keys()), 
+        options=list(self.pages.keys()),
         icons=["clipboard", "house", "clock-history", "archive", "gear"],
         menu_icon="cast",
         default_index=1,
@@ -57,6 +57,7 @@ class ImageProcessingController:
 
     # Image upload button
     st.subheader("Upload a file")
+    # + InputFile: InputFile
     uploaded_file = st.file_uploader("", type=["mp4", "png", "jpg", "jpeg"])
 
     # Process the uploaded image if available
@@ -81,7 +82,7 @@ class ImageProcessingController:
         self.analyze_uploaded_file(uploaded_file)
         self.view.display(self.model.getFile())
 
-
+  # + analyze(File): void
   def analyze_uploaded_file(self, file):
     st.session_state.ctr += 1
     self.model.analyze_image(self.file_path)
@@ -102,5 +103,7 @@ class ImageProcessingController:
       "timestamp": datetime.datetime.now(),
       "image_data": image_data
     }
-    
+
     self.model.insertIntoDB(data)
+
+  # Missing store Data
